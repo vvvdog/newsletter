@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "fetch": "node ./scripts/getUpdates.js"
+    "knex": "./node_modules/.bin/knex",
+    "fetch": "node ./scripts/getUpdates.js",
+    "db": "node ./database/connection.js"
   },
   "keywords": [],
   "author": "zackmoredev@gmail.com",
@@ -13,9 +15,11 @@
   "dependencies": {
     "@koa/cors": "^2.2.1",
     "dotenv": "^6.0.0",
+    "knex": "^0.14.6",
     "koa": "^2.5.1",
     "koa-logger": "^3.2.0",
     "koa-router": "^7.4.0",
+    "pg": "^7.4.3",
     "r2": "^2.0.1"
   }
 }
