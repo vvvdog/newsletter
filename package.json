@@ -1,17 +1,20 @@
 {
   "name": "newsletter",
   "version": "1.0.0",
-  "description": "",
+  "description": "Telegram link to post",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "zackmoredev@gmail.com",
   "license": "ISC",
   "dependencies": {
+    "@koa/cors": "^2.2.1",
+    "dotenv": "^6.0.0",
     "koa": "^2.5.1",
-    "koa-cors": "0.0.16",
+    "koa-logger": "^3.2.0",
     "koa-router": "^7.4.0"
   }
 }
