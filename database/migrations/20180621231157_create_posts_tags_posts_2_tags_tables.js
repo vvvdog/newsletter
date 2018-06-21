@@ -34,8 +34,8 @@ exports.up = async function(knex, Promise) {
   });
 };
 
-exports.down = function(knex, Promise) {
-  knex.schema.dropTable('post_2_tag');
-  knex.schema.dropTable('posts');
-  knex.schema.dropTable('tags');
+exports.down = async function(knex, Promise) {
+  await knex.schema.dropTable('post_2_tag');
+  await knex.schema.dropTable('posts');
+  await knex.schema.dropTable('tags');
 };
