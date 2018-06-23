@@ -7,20 +7,25 @@ module.exports = {
     const { update_id, channel_post } = update;
     const { author_signature, date, text } = channel_post;
 
-    // TODO: parse text for tags
+    // TODO: parse text, get link/tags/refer
     if (text.startsWith('http://') || text.startsWith('https://')) {
-      const textGroups = text.split(' ');
-      const link = textGroups[0];
+      let textGroups = text.split(' ');
+      const link = textGroups.shift();
+
+      const restText = textGroups.join(' ');
+      const restTextGroups = restText.split(' #');
+
+      const refer = restTextGroups.shift();
+      // const tags = restTextGroups;
 
       return {
         original_id: update_id,
         author: author_signature,
         sent_at: dayjs(date).toISOString(),
-        link
+        link,
+        refer
       };
     }
-
-
   },
 
   async getOpenGraphData(link) {

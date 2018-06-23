@@ -46,4 +46,4 @@ async function run() {
   conn.destroy();
 }
 
-run();
+module.exports = run;

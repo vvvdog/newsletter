@@ -1,11 +1,28 @@
 const Router = require('koa-router');
 const conn = require('../database/connection');
+const scripts = require('../scripts');
 
 const router = new Router();
 
 router.get('/', async (ctx, next) => {
   ctx.body = 'hello';
   next();
+});
+
+router.post('/api/_run_fetch', async (ctx, next) => {
+  try {
+    await scripts.getUpdates();
+    ctx.stats = 201; 
+    ctx.body = '';
+  } catch (e) {
+    ctx.throw(500, e);
+  }
+
+  next();
+});
+
+router.post('/api/posts', async (ctx, next) => {
+  console.log(ctx.req.body);
 });
 
 router.get('/api/posts', async (ctx, next) => {
@@ -19,6 +36,6 @@ router.get('/api/posts', async (ctx, next) => {
   }
 
   next();
-})
+});
 
 module.exports = router;
