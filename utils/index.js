@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const dayjs = require('dayjs');
 const grabity = require('grabity');
 
@@ -7,13 +8,19 @@ module.exports = {
     const { author_signature, date, text } = channel_post;
 
     // TODO: parse text for tags
+    if (text.startsWith('http://') || text.startsWith('https://')) {
+      const textGroups = text.split(' ');
+      const link = textGroups[0];
 
-    return {
-      original_id: update_id,
-      author: author_signature,
-      sent_at: dayjs(date).toISOString(),
-      link: text
-    };
+      return {
+        original_id: update_id,
+        author: author_signature,
+        sent_at: dayjs(date).toISOString(),
+        link
+      };
+    }
+
+
   },
 
   async getOpenGraphData(link) {
