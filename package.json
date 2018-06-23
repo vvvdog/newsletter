@@ -21,6 +21,7 @@
     "grabity": "^1.0.4",
     "knex": "^0.14.6",
     "koa": "^2.5.1",
+    "koa-bodyparser": "^4.2.1",
     "koa-logger": "^3.2.0",
     "koa-router": "^7.4.0",
     "lodash": "^4.17.10",
