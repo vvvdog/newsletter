@@ -22,7 +22,7 @@ router.post('/api/_run_fetch', async (ctx, next) => {
 });
 
 router.post('/api/posts', async (ctx, next) => {
-  console.log(ctx.req.body);
+  console.log(ctx.request.body);
 });
 
 router.get('/api/posts', async (ctx, next) => {
