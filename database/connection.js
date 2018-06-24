@@ -19,14 +19,14 @@ KnexQueryBuilder.prototype.paginate = function (per_page, current_page) {
   if (page < 1) page = 1;
   var offset = (page - 1) * per_page;
   return Promise.all([
-    this.clone().count('* as count').first(),
+    this.clone().count('id'),
     this.offset(offset).limit(per_page)
   ])
   .then(([total, rows]) => {
-    var count = total.count;
+    var count = total.length;
     var rows = rows;
     pagination.total = parseInt(count);
-    pagination.per_page = per_page;
+    pagination.per_page = parseInt(per_page);
     pagination.offset = offset;
     pagination.to = offset + rows.length;
     pagination.last_page = Math.ceil(count / per_page);

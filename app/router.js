@@ -18,7 +18,7 @@ router.post('/api/_run_fetch', async (ctx, next) => {
     ctx.body = '';
   } catch (e) {
     ctx.throw(500, e);
-  }
+  } 
 
   next();
 });
