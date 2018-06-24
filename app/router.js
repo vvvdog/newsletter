@@ -49,7 +49,11 @@ router.get('/api/posts', async (ctx, next) => {
   const { page, per_page } = ctx.query;
 
   try {
-    const posts = await conn.select().table('posts').paginate(per_page, page);
+    const posts = await conn.select('*')
+                          .from('posts')
+                          .groupBy('created_at', 'id')
+                          .orderBy('created_at', 'desc')
+                          .paginate(per_page, page);
     ctx.body = posts;
   } catch (e) {
     ctx.throw(500, 'server error');
