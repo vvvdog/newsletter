@@ -1,3 +1,4 @@
 module.exports = {
-  getUpdates: require('./getUpdates')
+  getUpdates: require('./getUpdates'),
+  mercuryParse: require('./mercuryParse')
 };
