@@ -1,5 +1,6 @@
 const dayjs = require('dayjs');
 const Router = require('koa-router');
+const htmlToText = require('html-to-text');
 const conn = require('../database/connection');
 const scripts = require('../scripts');
 const {
@@ -36,6 +37,9 @@ router.post('/api/posts', async (ctx, next) => {
     data.created_at = dayjs().toISOString();
 
     data.mercury = await mercuryParse(data.link);
+    if (Object.keys(data.mercury).includes('content') && data.mercury.content.length) {
+      data.mercury.description = htmlToText.fromString(data.mercury.content);
+    }
 
     try {
       const post = await conn('posts').insert(data);
