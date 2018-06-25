@@ -2,7 +2,11 @@ const dayjs = require('dayjs');
 const Router = require('koa-router');
 const conn = require('../database/connection');
 const scripts = require('../scripts');
-const { parseTelegramUpdate, getOpenGraphData } = require('../utils');
+const {
+  parseTelegramUpdate,
+  getOpenGraphData,
+  mercuryParse
+} = require('../utils');
 
 const router = new Router();
 
@@ -30,6 +34,8 @@ router.post('/api/posts', async (ctx, next) => {
     const opengraph = await getOpenGraphData(data.link);
     if (opengraph) data.opengraph = opengraph;
     data.created_at = dayjs().toISOString();
+
+    data.mercury = await mercuryParse(data.link);
 
     try {
       const post = await conn('posts').insert(data);

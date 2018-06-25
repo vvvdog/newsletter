@@ -1,3 +1,4 @@
+require('dotenv').config();
 const _ = require('lodash');
 const dayjs = require('dayjs');
 const grabity = require('grabity');
@@ -34,6 +35,22 @@ module.exports = {
       if (Object.keys(data).length === 0) return null;
       return data;
     } catch (e) {
+      return null;
+    }
+  },
+
+  async mercuryParse(link) {
+    const url = 'https://mercury.postlight.com/parser?url=';
+
+    try {
+      const res = await r2(`${url}${link}`, {
+        headers: {
+          'x-api-key': process.env.MERCURY_API_TOKEN
+        }
+      }).json;
+      return res;
+    } catch (e) {
+      console.log(e);
       return null;
     }
   }
