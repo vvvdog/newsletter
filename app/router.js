@@ -72,4 +72,13 @@ router.get('/api/posts', async (ctx, next) => {
   next();
 });
 
+router.get('/api/commoncss', async (ctx, next) => {
+  ctx.status = 200;
+  ctx.body = {
+    data: `body { font-size: 16px } p, div { margin: 0 0 1em } img { display: block; margin: 1em auto; max-width: 100% }`
+  };
+
+  next();
+});
+
 module.exports = router;
