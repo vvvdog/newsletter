@@ -1,5 +1,6 @@
 require('dotenv').config();
 const _ = require('lodash');
+const r2 = require('r2');
 const dayjs = require('dayjs');
 const grabity = require('grabity');
 
