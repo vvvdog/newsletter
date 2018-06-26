@@ -75,7 +75,7 @@ router.get('/api/posts', async (ctx, next) => {
 router.get('/api/commoncss', async (ctx, next) => {
   ctx.status = 200;
   ctx.body = {
-    data: `body { font-size: 16px } p, div { margin: 0 0 1em } img { display: block; margin: 1em auto; max-width: 100% }`
+    data: `body { font-size: 16px; font-family: Georgia, Times, serif; line-height: 1.8; padding: 1em } ol, ul { margin: 0; padding: 0; list-style: none } p, div { margin: 0 0 1em } img { display: block; margin: 1em auto; max-width: 100% } a { color: 'FFB324' }`
   };
 
   next();
